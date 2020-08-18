@@ -46,7 +46,7 @@ def composeFowardOneTimeStepWithRandomSubtlety(numOfAgent): # one time step used
     
     minDistractorSpeed = int(8.7 * distanceToVisualDegreeRatio/numMDPTimeStepPerSecond)
     maxDistractorSpeed = int(14.5 * distanceToVisualDegreeRatio/numMDPTimeStepPerSecond)
-    prepareDistractorVelocity = PrepareDistractorVelocity(maxDistractorSpeed, maxDistractorSpeed, warmUpTimeSteps, transCartesianToPolar, transPolarToCartesian)
+    prepareDistractorVelocity = PrepareDistractorVelocity(minDistractorSpeed, maxDistractorSpeed, warmUpTimeSteps, transCartesianToPolar, transPolarToCartesian)
     
     sheepId = 0
     wolfId = 1
@@ -92,8 +92,8 @@ class SampleTrajectoriesForCoditions: # how to run episode/trajectory is differe
             minInitSheepWolfDistance = 9 * distanceToVisualDegreeRatio
             minInitSheepDistractorDistance = 2.5 * distanceToVisualDegreeRatio  # no distractor in killzone when init
             isLegalInitPositions = IsLegalInitPositions(sheepId, wolfId, distractorsIds, minInitSheepWolfDistance, minInitSheepDistractorDistance)
-            xBoundary = [0, 600]
-            yBoundary = [0, 600]
+            xBoundary = [0, 640]
+            yBoundary = [0, 480]
             resetState = ResetState(xBoundary, yBoundary, numOfAgent, isLegalInitPositions, transPolarToCartesian)
             
             killzoneRadius = 2.5 * distanceToVisualDegreeRatio
@@ -134,12 +134,12 @@ def main():
     visualize = True
 
     if visualize:
-        screenWidth = 600
-        screenHeight = 600
+        screenWidth = 640
+        screenHeight = 480
         screen = pg.display.set_mode((screenWidth, screenHeight))
         screenColor = THECOLORS['black']
-        xBoundary = [0, 600]
-        yBoundary = [0, 600]
+        xBoundary = [0, 640]
+        yBoundary = [0, 480]
         lineColor = THECOLORS['white']
         lineWidth = 4
         drawBackground = DrawBackground(screen, screenColor, xBoundary, yBoundary, lineColor, lineWidth)
@@ -160,8 +160,8 @@ def main():
                 saveImage, imageSavePath, drawBackground)
 
        # MDP Env
-        xBoundary = [0, 600]
-        yBoundary = [0, 600]
+        xBoundary = [0, 640]
+        yBoundary = [0, 480]
         stayInBoundaryByReflectVelocity = StayInBoundaryByReflectVelocity(xBoundary, yBoundary)
         
         distanceToVisualDegreeRatio = 20
